@@ -1,8 +1,9 @@
-package com.example.login
+package com.example.login.view
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.login.R
 import com.example.login.di.LoginComponent
 import com.example.login.di.LoginComponentProvider
 import com.example.login.repository.LoginRepository

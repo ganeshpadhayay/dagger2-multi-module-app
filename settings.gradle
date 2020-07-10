@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "dagger2-multi-module-app"

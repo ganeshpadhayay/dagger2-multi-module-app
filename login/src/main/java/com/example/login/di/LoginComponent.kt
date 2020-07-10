@@ -1,5 +1,6 @@
 package com.example.login.di
 
+import com.example.login.di.viewmodel.LoginViewModelModule
 import com.example.login.view.LoginActivity
 import dagger.Subcomponent
 
@@ -8,7 +9,7 @@ import dagger.Subcomponent
  * parent's dependencies
  */
 @LoginScope
-@Subcomponent(modules = [LoginModule::class /*,BaseModule::class,*/])
+@Subcomponent(modules = [LoginModule::class, /*BaseModule::class,*/LoginViewModelModule::class])
 interface LoginComponent {
 
     @Subcomponent.Factory

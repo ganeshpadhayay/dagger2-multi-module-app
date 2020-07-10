@@ -1,4 +1,4 @@
-package com.example.dagger2_multi_module_app;
+package com.example.login;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -17,7 +17,7 @@ import javax.inject.Named;
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
     @Inject
-    @Named("app-map")
+    @Named("login-map")
     Map<Class<? extends ViewModel>, ViewModel> vmHashMap;
 
     @Inject

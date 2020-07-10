@@ -1,15 +1,20 @@
 package com.example.login.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.login.R
+import com.example.login.ViewModelFactory
 import com.example.login.di.LoginComponent
 import com.example.login.di.LoginComponentProvider
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
-//    @Inject
-//    lateinit var loginViewModelFactory: LoginViewModelFactory
+    @Inject
+    lateinit var loginViewModelFactory: ViewModelFactory
 
     private lateinit var loginComponent: LoginComponent
 
@@ -23,12 +28,12 @@ class LoginActivity : AppCompatActivity() {
 
         loginComponent.inject(this)
 
-//        loginViewModel = ViewModelProviders.of(this, loginViewModelFactory).get(LoginViewModel::class.java)
-//
-//        loginViewModel.loginMessage.observe(this, Observer {
-//            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-//        })
-//
-//        loginViewModel.observeLoginMessage()
+        loginViewModel = ViewModelProviders.of(this, loginViewModelFactory).get(LoginViewModel::class.java)
+
+        loginViewModel.loginMessage.observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+
+        loginViewModel.observeLoginMessage()
     }
 }

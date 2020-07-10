@@ -2,7 +2,7 @@ package com.example.dagger2_multi_module_app
 
 import android.app.Application
 import com.example.dagger2_multi_module_app.di.AppComponent
-import com.example.dagger2_multi_module_app.di.AppModule
+import com.example.dagger2_multi_module_app.di.modules.AppModule
 import com.example.dagger2_multi_module_app.di.DaggerAppComponent
 import com.example.login.di.LoginComponent
 import com.example.login.di.LoginComponentProvider

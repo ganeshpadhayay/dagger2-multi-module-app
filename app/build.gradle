@@ -46,4 +46,9 @@ dependencies {
     //ViewModel and LiveData
     def lifecycle_version = '2.1.0-alpha03'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //Retrofit2
+    def retrofit_version = "2.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }

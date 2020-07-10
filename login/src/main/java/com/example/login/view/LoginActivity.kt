@@ -7,12 +7,16 @@ import com.example.login.R
 import com.example.login.di.LoginComponent
 import com.example.login.di.LoginComponentProvider
 import com.example.login.repository.LoginRepository
+import retrofit2.Retrofit
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
     @Inject
     lateinit var loginRepository: LoginRepository
+
+    @Inject
+    lateinit var retrofit: Retrofit
 
     private lateinit var loginComponent: LoginComponent
 
@@ -24,6 +28,6 @@ class LoginActivity : AppCompatActivity() {
 
         loginComponent.inject(this)
 
-        Toast.makeText(this, loginRepository.getStringFromLoginRepository(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, loginRepository.getStringFromLoginRepository() + retrofit.baseUrl(), Toast.LENGTH_SHORT).show()
     }
 }

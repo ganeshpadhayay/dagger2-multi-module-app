@@ -2,8 +2,8 @@ package com.example.dagger2_multi_module_app
 
 import android.app.Application
 import com.example.dagger2_multi_module_app.di.AppComponent
-import com.example.dagger2_multi_module_app.di.modules.AppModule
 import com.example.dagger2_multi_module_app.di.DaggerAppComponent
+import com.example.dagger2_multi_module_app.di.modules.AppModule
 import com.example.login.di.LoginComponent
 import com.example.login.di.LoginComponentProvider
 
@@ -26,7 +26,7 @@ class MyApplication : Application(), LoginComponentProvider {
     }
 
     //here we will be listing down all the cross-module component provider methods
-    override fun provideLoginComponent(): LoginComponent? {
+    override fun provideLoginComponent(): LoginComponent {
         return appComponent.loginComponent().create()
     }
 }

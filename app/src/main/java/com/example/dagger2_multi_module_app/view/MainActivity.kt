@@ -4,16 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.base.BaseRepository
-import com.example.base.ExternalCommonDataRepository
-import com.example.base.data.UserRepository
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.dagger2_multi_module_app.MyApplication
 import com.example.dagger2_multi_module_app.R
-import com.example.dagger2_multi_module_app.StringProvider
+import com.example.dagger2_multi_module_app.ViewModelFactory
 import com.example.login.view.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
-import javax.inject.Named
 
 /***
  * Note: Field injection should only be used in Android framework classes where constructor injection cannot be used.
@@ -22,20 +20,10 @@ import javax.inject.Named
  */
 class MainActivity : AppCompatActivity() {
 
-    //this belongs to the app module
     @Inject
-    lateinit var stringProvider: StringProvider
+    lateinit var appViewModelFactory: ViewModelFactory
 
-    //these belong to the base module
-    @Inject
-    lateinit var baseRepository: BaseRepository
-
-    @Inject
-    lateinit var externalCommonDataRepository: ExternalCommonDataRepository
-
-    @Inject
-    @Named("local")
-    lateinit var localUserRepository: UserRepository
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         (application as MyApplication).appComponent.inject(this)
 
-        Toast.makeText(
-            this,
-            stringProvider.provideWelcomeMessage() + "-" + baseRepository.getBaseURL() + "-" + externalCommonDataRepository.getExternalCommonAPIURL() + "-" + localUserRepository.getUserName() + "-" + localUserRepository.getUserAge(),
-            Toast.LENGTH_SHORT
-        ).show()
+        mainViewModel = ViewModelProviders.of(this, appViewModelFactory).get(MainViewModel::class.java)
+
+        mainViewModel.observeWelcomeMessage().observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
 
         buttonLoginActivity.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
